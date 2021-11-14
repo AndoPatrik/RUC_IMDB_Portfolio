@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31815.197
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MigratePM6", "MigratePM6\MigratePM6.csproj", "{63402782-AB42-4749-AF53-743A9E5A91B0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{63402782-AB42-4749-AF53-743A9E5A91B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63402782-AB42-4749-AF53-743A9E5A91B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63402782-AB42-4749-AF53-743A9E5A91B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63402782-AB42-4749-AF53-743A9E5A91B0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F57C2B85-00DF-42BA-8C7A-A82658C2A717}
+	EndGlobalSection
+EndGlobal
