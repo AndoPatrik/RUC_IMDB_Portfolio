@@ -18,8 +18,8 @@ namespace IMDB.WebAPI.Controllers.v1
             _mediator = mediator;
         }
 
-        // POST api/<UsersController>
-        [HttpPost]
+        // POST api/<UsersController/register>
+        [HttpPost("register")]
         public async Task<ActionResult<ResponseMessage>> RegisterUser ([FromBody] UserDTO bodyPayload)
         {
             try

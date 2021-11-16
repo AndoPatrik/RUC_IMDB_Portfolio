@@ -1,5 +1,5 @@
-﻿using Application.Interfaces.v1.Repositories;
-using Application.Services.v1.AuthService.Command;
+﻿using Application.Services.v1.AuthService.Command;
+using IMDB.Application.DTOs;
 using IMDB.Application.Requests;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -12,22 +12,21 @@ namespace IMDB.WebAPI.Controllers.v1
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly IAuthRepository _repositroy;
         private readonly IMediator _mediator;
 
-        public AuthController(IAuthRepository repositroy, IMediator mediator)
+        public AuthController(IMediator mediator)
         {
-            _repositroy = repositroy;
             _mediator = mediator;
         }
 
         // POST api/<AuthController>
-        [HttpPost]
-        public async Task<ActionResult<AuthInstance>> Post([FromBody] string value)
+        [HttpPost()]
+        public async Task<ActionResult<AuthInstance>> Authenticate([FromBody] UserDTO bodyPayload)
         {
             try
             {
-                var result = await _mediator.Send(new AuthenticateCommand());
+                var result = await _mediator.Send(new AuthenticateCommand { User = bodyPayload});
+                if (result.Data is null) return Unauthorized(result);
                 return Ok(result);
             }
             catch (Exception)

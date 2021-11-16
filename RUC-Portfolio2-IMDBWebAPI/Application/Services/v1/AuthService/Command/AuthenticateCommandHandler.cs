@@ -1,4 +1,5 @@
 ﻿using Application.Interfaces.v1.Repositories;
+using IMDB.Application.DTOs;
 using IMDB.Application.Requests;
 using MediatR;
 using System.Threading;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application.Services.v1.AuthService.Command
 {
-    public class AuthenticateCommandHandler : IRequestHandler<AuthenticateCommand, AuthInstance>
+    public class AuthenticateCommandHandler : IRequestHandler<AuthenticateCommand, ResponseMessage>
     {
         private readonly IAuthRepository _authRepository;
 
@@ -15,11 +16,9 @@ namespace Application.Services.v1.AuthService.Command
             _authRepository = authRepository;
         }
 
-        public async Task<AuthInstance> Handle(AuthenticateCommand request, CancellationToken cancellationToken)
+        public async Task<ResponseMessage> Handle(AuthenticateCommand request, CancellationToken cancellationToken)
         {
-           AuthInstance x = new AuthInstance();
-           x.Msg = await _authRepository.Test();
-           return x;
+            return await _authRepository.Authenticate(request.User);
         }
     }
 }
