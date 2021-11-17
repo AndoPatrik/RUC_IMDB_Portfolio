@@ -5,8 +5,8 @@ namespace IMDB.Application.Interfaces.v1.Repositories
 {
     public interface IBookmarksRepository
     {
-        public Task<ResponseMessage> GetTitleBookmarksByUser();
-        public Task<ResponseMessage> GetNamesBookmarksByUser();
+        public Task<ResponseMessage> GetTitleBookmarksByUser(string jwtToken);
+        public Task<ResponseMessage> GetNamesBookmarksByUser(string jwtToken);
         public Task<ResponseMessage> AddTitleBookmarkToUser(TitleBookmarkDTO titleBookmark);
         public Task<ResponseMessage> AddNameBookmarkToUser(NameBookmarkDTO nameBookmark);
         public Task<ResponseMessage> DeleteTitleBookmarksByUser(TitleBookmarkDTO titleBookmark);
