@@ -1,6 +1,7 @@
 ﻿using IMDB.Application.DTOs;
 using IMDB.Application.Services.v1.TitleBookmarksService.Command;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
 
@@ -8,6 +9,7 @@ using Microsoft.Net.Http.Headers;
 
 namespace IMDB.WebAPI.Controllers.v1
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class TitleBookmarksController : ControllerBase
@@ -27,7 +29,7 @@ namespace IMDB.WebAPI.Controllers.v1
         }
 
         // POST api/<TitleBookmarksController>
-        [HttpPost]
+        [HttpPost("create")]
         public async Task<ActionResult<ResponseMessage>> CreateTitleBookmark([FromBody] TitleBookmarkDTO titleBookmark)
         {
             try
@@ -44,9 +46,19 @@ namespace IMDB.WebAPI.Controllers.v1
 
         // DELETE api/<ValuesController>/5
         [HttpDelete("{tconst}")]
-        public void DeleteTitleBookmark(string tconst)
+        public async Task<ActionResult<ResponseMessage>> DeleteTitleBookmark(string tconst)
         {
-
+            try
+            {
+                var bearer_token = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
+                var result = await _mediator.Send(new DeleteTitleBookmarkCommand { Tconst = tconst, JWTToken = bearer_token });
+                if (result.Data is null) return NotFound(result);
+                return Ok(result);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

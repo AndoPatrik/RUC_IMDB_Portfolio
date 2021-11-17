@@ -78,9 +78,7 @@ builder.Services.AddScoped<IRequestHandler<AddNameBookmarkCommand, ResponseMessa
 builder.Services.AddScoped<IRequestHandler<GetNameBookmarksQuery, ResponseMessage>, GetNameBookmarksQueryHandler>();
 builder.Services.AddScoped<IRequestHandler<DeleteNameBookmarkingCommand, ResponseMessage>, DeleteNameBookmarkingCommandHandler>();
 builder.Services.AddScoped<IRequestHandler<AddTitleBookmarkCommand, ResponseMessage>, AddTitleBookmarkCommandHandler>();
-
-
-
+builder.Services.AddScoped<IRequestHandler<DeleteTitleBookmarkCommand, ResponseMessage>, DeleteTitleBookmarkCommandHandler>();
 
 //JWT
 // services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();

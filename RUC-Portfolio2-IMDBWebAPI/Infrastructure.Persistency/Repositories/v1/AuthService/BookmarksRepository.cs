@@ -98,9 +98,28 @@ namespace IMDB.Infrastructure.Repositories.v1.AuthService
             return response;
         }
 
-        public Task<ResponseMessage> DeleteTitleBookmarksByUser(TitleBookmarkDTO titleBookmark)
+        public async Task<ResponseMessage> DeleteTitleBookmarksByUser(TitleBookmarkDTO titleBookmark)
         {
-            throw new NotImplementedException();
+            ResponseMessage response = new ResponseMessage();
+            try
+            {
+                var titleBookmarkToDelete = _imdbContext.TitleBookmarkings.Where(b => b.Tconst == titleBookmark.Tconst && b.Uconst == titleBookmark.Uconst).FirstOrDefault();
+
+                if (titleBookmarkToDelete is null)
+                {
+                    response.Status = "Title bookmarking has been already deleted or does not exist.";
+                    return response;
+                }
+
+                _imdbContext.TitleBookmarkings.Remove(titleBookmarkToDelete);
+                response.Status = "Name bookmarking is sucessfuilly deleted.";
+                response.Data = titleBookmark;
+            }
+            catch (Exception ex)
+            {
+                response.Status = ex.Message;
+            }
+            return response;
         }
 
         public async Task<ResponseMessage> GetNamesBookmarksByUser(string jwtToken)
