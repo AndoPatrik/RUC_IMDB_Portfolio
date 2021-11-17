@@ -40,7 +40,7 @@ namespace IMDB.Infrastructure.Repositories.v1.AuthService
                 var jsonString = JsonConvert.SerializeObject(mylist, Formatting.Indented, new JsonConverter[] { new Newtonsoft.Json.Converters.StringEnumConverter() });
 
                 response.Status = "200";
-                response.Data = $"{jsonString}";
+                response.Data = objects;
             }
             catch (Exception ex)
             {
@@ -65,7 +65,7 @@ namespace IMDB.Infrastructure.Repositories.v1.AuthService
                 var jsonString = JsonConvert.SerializeObject(mylist, Formatting.Indented, new JsonConverter[] { new Newtonsoft.Json.Converters.StringEnumConverter() });
 
                 response.Status = "200";
-                response.Data = $"{jsonString}";
+                response.Data = mylist;
             }
             catch (Exception ex)
             {

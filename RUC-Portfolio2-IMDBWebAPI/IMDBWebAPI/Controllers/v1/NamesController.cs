@@ -1,10 +1,12 @@
 ﻿using IMDB.Application.DTOs;
-using IMDB.Application.Services.v1.NameService;
+using IMDB.Application.Services.v1.NameService.Query;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IMDB.WebAPI.Controllers.v1
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class NamesController : ControllerBase
@@ -22,7 +24,7 @@ namespace IMDB.WebAPI.Controllers.v1
         {
             try
             {
-                return await _mediator.Send(new CreateNameCommand { Nconst = nconst });
+                return await _mediator.Send(new GetNameQuery { Nconst = nconst });
             }
             catch (Exception)
             {
@@ -35,7 +37,7 @@ namespace IMDB.WebAPI.Controllers.v1
         {
             try
             {
-                return await _mediator.Send(new CreateNameCommand { });
+                return await _mediator.Send(new GetNameQuery { });
             }
             catch (Exception)
             {

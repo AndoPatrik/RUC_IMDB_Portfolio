@@ -7,20 +7,20 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace IMDB.Application.Services.v1.TitleService
+namespace IMDB.Application.Services.v1.TitleService.Queries
 {
-    public class CreateTitleCommandHandler : IRequestHandler<CreateTitleCommand, ResponseMessage>
+    public class GetTitleQueryCommandHandler : IRequestHandler<GetTitleQuery, ResponseMessage>
     {
         private readonly ITitlesRepository _titlesRepository;
 
-        public CreateTitleCommandHandler(ITitlesRepository titlesRepository)
+        public GetTitleQueryCommandHandler(ITitlesRepository titlesRepository)
         {
             _titlesRepository = titlesRepository;
         }
 
-        public async Task<ResponseMessage> Handle(CreateTitleCommand request, CancellationToken cancellationToken)
+        public async Task<ResponseMessage> Handle(GetTitleQuery request, CancellationToken cancellationToken)
         {
-            
+
             if (request.Tconst == null)
             {
                 return await _titlesRepository.GetAllTitles();

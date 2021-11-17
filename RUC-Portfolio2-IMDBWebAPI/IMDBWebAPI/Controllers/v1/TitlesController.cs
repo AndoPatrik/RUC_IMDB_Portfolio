@@ -1,11 +1,13 @@
 ﻿using IMDB.Application.DTOs;
-using IMDB.Application.Services.v1.TitleService;
+using IMDB.Application.Services.v1.TitleService.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IMDB.WebAPI.Controllers.v1
 {
-        [Route("api/[controller]")]
+    [Authorize]
+    [Route("api/[controller]")]
         [ApiController]
         public class TitlesController : ControllerBase
         {
@@ -22,7 +24,9 @@ namespace IMDB.WebAPI.Controllers.v1
             {
                 try
                 {
-                    return await _mediator.Send(new CreateTitleCommand { Tconst = tconst });
+                    var result = await _mediator.Send(new GetTitleQuery { Tconst = tconst });
+                    if (result.Data is null) return NotFound(result);
+                    return Ok(result);
                 }
                 catch (Exception)
                 {
@@ -35,7 +39,9 @@ namespace IMDB.WebAPI.Controllers.v1
         {
             try
             {
-                return await _mediator.Send(new CreateTitleCommand { });
+                var result = await _mediator.Send(new GetTitleQuery { });
+                if (result.Data is null) return NotFound(result);
+                return Ok(result);
             }
             catch (Exception)
             {

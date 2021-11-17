@@ -6,10 +6,10 @@ using IMDB.Application.Interfaces.v1.Repositories;
 using IMDB.Application.Services.v1.BookmarksService;
 using IMDB.Application.Services.v1.BookmarksService.Command;
 using IMDB.Application.Services.v1.BookmarksService.Query;
-using IMDB.Application.Services.v1.NameService;
+using IMDB.Application.Services.v1.NameService.Query;
 using IMDB.Application.Services.v1.TitleBookmarksService.Command;
 using IMDB.Application.Services.v1.TitleBookmarksService.Query;
-using IMDB.Application.Services.v1.TitleService;
+using IMDB.Application.Services.v1.TitleService.Queries;
 using IMDB.Application.Services.v1.UsersService;
 using IMDB.Application.Services.v1.UsersService.Command;
 using IMDB.Infrastructure.Repositories.v1.AuthService;
@@ -89,8 +89,8 @@ builder.Services.AddScoped<IRequestHandler<AddTitleBookmarkCommand, ResponseMess
 builder.Services.AddScoped<IRequestHandler<DeleteTitleBookmarkCommand, ResponseMessage>, DeleteTitleBookmarkCommandHandler>();
 builder.Services.AddScoped<IRequestHandler<GetTitlesBookmarkQuery, ResponseMessage>, GetTitlesBookmarkQueryHandler>();
 
-builder.Services.AddScoped<IRequestHandler<CreateTitleCommand, ResponseMessage>, CreateTitleCommandHandler>();
-builder.Services.AddScoped<IRequestHandler<CreateNameCommand, ResponseMessage>, CreateNameCommandHandler>();
+builder.Services.AddScoped<IRequestHandler<GetTitleQuery, ResponseMessage>, GetTitleQueryCommandHandler>();
+builder.Services.AddScoped<IRequestHandler<GetNameQuery, ResponseMessage>, GetNameQueryHandler>();
 
 //JWT
 // services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();

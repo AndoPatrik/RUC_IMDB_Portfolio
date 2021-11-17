@@ -34,10 +34,10 @@ namespace IMDB.Infrastructure.Repositories.v1.AuthService
                 object[] objects = {title, rating, principals};
                 mylist.AddRange(objects);
 
-                var jsonString = JsonConvert.SerializeObject(mylist, Formatting.Indented, new JsonConverter[] { new Newtonsoft.Json.Converters.StringEnumConverter() });
+                //var jsonString = JsonConvert.SerializeObject(mylist, Formatting.Indented, new JsonConverter[] { new Newtonsoft.Json.Converters.StringEnumConverter() });
 
-                response.Status = "200";
-                response.Data = $"{jsonString}";
+                response.Status = $"Title on ID:{title.Tconst} successfully fetched.";
+                response.Data = objects;
             }
             catch (Exception ex)
             {
@@ -53,15 +53,16 @@ namespace IMDB.Infrastructure.Repositories.v1.AuthService
 
             try
             {
+                //TODO: Do this with TitleBasicDTO
                 List<object> mylist = new List<object>();
                 foreach (var line in _imdbContext.TitleBasics.Take(10))
                 {
                     mylist.Add(line);
                 }
-                var jsonString = JsonConvert.SerializeObject(mylist, Formatting.Indented, new JsonConverter[] { new Newtonsoft.Json.Converters.StringEnumConverter() });
+                //var jsonString = JsonConvert.SerializeObject(mylist, Formatting.Indented, new JsonConverter[] { new Newtonsoft.Json.Converters.StringEnumConverter() });
 
-                response.Status = "200";
-                response.Data = $"{jsonString}";
+                response.Status = "Sucessful title fetch.";
+                response.Data = mylist;
             }
             catch (Exception ex)
             {
