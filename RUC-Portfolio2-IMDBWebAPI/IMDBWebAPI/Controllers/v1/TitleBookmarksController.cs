@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using IMDB.Application.DTOs;
+using IMDB.Application.Services.v1.TitleBookmarksService.Command;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Net.Http.Headers;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,6 +12,13 @@ namespace IMDB.WebAPI.Controllers.v1
     [ApiController]
     public class TitleBookmarksController : ControllerBase
     {
+        private readonly IMediator _mediator;
+
+        public TitleBookmarksController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
+
         // GET: api/<TitleBookmarksController>
         [HttpGet]
         public IEnumerable<string> GetTitleBookmarks()
@@ -17,9 +28,18 @@ namespace IMDB.WebAPI.Controllers.v1
 
         // POST api/<TitleBookmarksController>
         [HttpPost]
-        public void CreateTitleBookmark([FromBody] string value)
+        public async Task<ActionResult<ResponseMessage>> CreateTitleBookmark([FromBody] TitleBookmarkDTO titleBookmark)
         {
-
+            try
+            {
+                var response = await _mediator.Send(new AddTitleBookmarkCommand { titleBookmark = titleBookmark });
+                if (response.Data is null) return NotFound(response);
+                return Ok(response);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         // DELETE api/<ValuesController>/5

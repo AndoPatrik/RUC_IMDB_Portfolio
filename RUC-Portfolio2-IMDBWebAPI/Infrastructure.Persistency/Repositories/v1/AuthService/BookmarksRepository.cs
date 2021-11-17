@@ -49,9 +49,29 @@ namespace IMDB.Infrastructure.Repositories.v1.AuthService
             return response;  
         }
 
-        public Task<ResponseMessage> AddTitleBookmarkToUser(TitleBookmarkDTO titleBookmark)
+        public async Task<ResponseMessage> AddTitleBookmarkToUser(TitleBookmarkDTO titleBookmark)
         {
-            throw new NotImplementedException();
+            ResponseMessage response = new ResponseMessage();
+            try
+            {
+                TitleBookmarking titleBookmarking = new TitleBookmarking
+                {
+                    Uconst = titleBookmark.Uconst,
+                    Tconst = titleBookmark.Tconst,
+                    Titledate = DateTime.Now.ToString(),
+                };
+
+                _imdbContext.TitleBookmarkings.Add(titleBookmarking);
+
+                await _imdbContext.SaveChangesAsync();
+                response.Status = "Name bookmark has been added.";
+                response.Data = titleBookmark;
+            }
+            catch (Exception ex)
+            {
+                response.Status = ex.Message;
+            }
+            return response;
         }
 
         public async Task<ResponseMessage> DeleteNameBookmarksByUser(NameBookmarkDTO nameBookmark)
