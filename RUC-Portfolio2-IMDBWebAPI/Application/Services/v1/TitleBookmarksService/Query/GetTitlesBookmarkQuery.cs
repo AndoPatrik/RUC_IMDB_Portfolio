@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using IMDB.Application.DTOs;
+using MediatR;
 
 namespace IMDB.Application.Services.v1.TitleBookmarksService.Query
 {
-    public class GetTitlesBookmarkQuery
+    public class GetTitlesBookmarkQuery : IRequest<ResponseMessage>
     {
+        public string JWTToken { get; set; }
     }
 }

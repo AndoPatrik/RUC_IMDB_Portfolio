@@ -1,5 +1,6 @@
 ﻿using IMDB.Application.DTOs;
 using IMDB.Application.Services.v1.TitleBookmarksService.Command;
+using IMDB.Application.Services.v1.TitleBookmarksService.Query;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -23,9 +24,19 @@ namespace IMDB.WebAPI.Controllers.v1
 
         // GET: api/<TitleBookmarksController>
         [HttpGet]
-        public IEnumerable<string> GetTitleBookmarks()
+        public async Task<ActionResult<ResponseMessage>> GetTitleBookmarks()
         {
-            return new string[] { "value1", "value2" };
+            try
+            {
+                var bearer_token = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
+                var response = await _mediator.Send(new GetTitlesBookmarkQuery { JWTToken = bearer_token });
+                if (response.Data is null) return NotFound(response);
+                return Ok(response);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         // POST api/<TitleBookmarksController>

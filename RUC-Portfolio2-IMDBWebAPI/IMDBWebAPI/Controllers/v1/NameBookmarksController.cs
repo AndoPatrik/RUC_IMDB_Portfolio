@@ -2,6 +2,7 @@
 using IMDB.Application.Services.v1.BookmarksService;
 using IMDB.Application.Services.v1.BookmarksService.Command;
 using IMDB.Application.Services.v1.BookmarksService.Query;
+using IMDB.Application.Services.v1.TitleBookmarksService.Query;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -30,7 +31,7 @@ namespace IMDB.WebAPI.Controllers.v1
             try
             {
                 var bearer_token = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
-                var response = await _mediator.Send(new GetNameBookmarksQuery { JWTToken = bearer_token });
+                var response = await _mediator.Send(new GetNamesBookmarksQuery { JWTToken = bearer_token });
                 if (response.Data is null) return NotFound(response);
                 return Ok(response);
             }

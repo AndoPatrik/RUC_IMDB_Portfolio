@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace IMDB.Application.Services.v1.BookmarksService.Query
 {
-    public class GetNameBookmarksQueryHandler : IRequestHandler<GetNameBookmarksQuery, ResponseMessage>
+    public class GetNamesBookmarkQueryHandler : IRequestHandler<GetNamesBookmarksQuery, ResponseMessage>
     {
         private readonly IBookmarksRepository _bookmarksRepository;
 
-        public GetNameBookmarksQueryHandler(IBookmarksRepository bookmarksRepository)
+        public GetNamesBookmarkQueryHandler(IBookmarksRepository bookmarksRepository)
         {
             _bookmarksRepository = bookmarksRepository;
         }
 
-        public async Task<ResponseMessage> Handle(GetNameBookmarksQuery request, CancellationToken cancellationToken)
+        public async Task<ResponseMessage> Handle(GetNamesBookmarksQuery request, CancellationToken cancellationToken)
         {
             return await _bookmarksRepository.GetNamesBookmarksByUser(request.JWTToken);
         }

@@ -88,6 +88,7 @@ namespace IMDB.Infrastructure.Repositories.v1.AuthService
                 }
 
                 _imdbContext.NamesBookmarkings.Remove(nameBookmarkToDelete);
+                await _imdbContext.SaveChangesAsync();
                 response.Status = "Name bookmarking is sucessfuilly deleted.";
                 response.Data = nameBookmark; 
             }
@@ -112,6 +113,7 @@ namespace IMDB.Infrastructure.Repositories.v1.AuthService
                 }
 
                 _imdbContext.TitleBookmarkings.Remove(titleBookmarkToDelete);
+                await _imdbContext.SaveChangesAsync();
                 response.Status = "Name bookmarking is sucessfuilly deleted.";
                 response.Data = titleBookmark;
             }
@@ -147,9 +149,27 @@ namespace IMDB.Infrastructure.Repositories.v1.AuthService
             return response;
         }
 
-        public Task<ResponseMessage> GetTitleBookmarksByUser(string jwtToken)
+        public async Task<ResponseMessage> GetTitleBookmarksByUser(string jwtToken)
         {
-            throw new NotImplementedException();
+            ResponseMessage response = new ResponseMessage();
+            try
+            {
+                var decodedToken = _jWTAuthenticationManager.DecodeJWT(jwtToken);
+                var titlesBookmarking = _imdbContext.TitleBookmarkings.Where(b => b.Uconst == decodedToken.UserID).ToList();
+
+                List<TitleBookmarkDTO> titlesBookmarkingDTO = new List<TitleBookmarkDTO>();
+                //TODO: Change to automapper
+                titlesBookmarking.ForEach(b => titlesBookmarkingDTO.Add(new TitleBookmarkDTO { Uconst = b.Uconst, Tconst = b.Tconst }));
+
+                response.Status = "Sucsessful fetching of title bookmarkings";
+                response.Data = titlesBookmarkingDTO;
+            }
+            catch (Exception ex)
+            {
+                response.Status = ex.Message;
+            }
+
+            return response;
         }
     }
 }
