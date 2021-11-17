@@ -5,6 +5,7 @@ using IMDB.Application.Interfaces.v1;
 using IMDB.Application.Interfaces.v1.Repositories;
 using IMDB.Application.Services.v1.BookmarksService;
 using IMDB.Application.Services.v1.BookmarksService.Command;
+using IMDB.Application.Services.v1.BookmarksService.Query;
 using IMDB.Application.Services.v1.UsersService;
 using IMDB.Application.Services.v1.UsersService.Command;
 using IMDB.Infrastructure.Repositories.v1.AuthService;
@@ -73,6 +74,9 @@ builder.Services.AddScoped<IBookmarksRepository, BookmarksRepository>();
 builder.Services.AddScoped<IRequestHandler<AuthenticateCommand, ResponseMessage>, AuthenticateCommandHandler>();
 builder.Services.AddScoped<IRequestHandler<CreateUserCommand, ResponseMessage>, CreateUserCommandHandler>();
 builder.Services.AddScoped<IRequestHandler<AddNameBookmarkCommand, ResponseMessage>, AddNameBookmarkCommandHandler>();
+builder.Services.AddScoped<IRequestHandler<GetNameBookmarksQuery, ResponseMessage>, GetNameBookmarksQueryHandler>();
+builder.Services.AddScoped<IRequestHandler<DeleteNameBookmarkingCommand, ResponseMessage>, DeleteNameBookmarkingCommandHandler>();
+
 
 //JWT
 // services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();

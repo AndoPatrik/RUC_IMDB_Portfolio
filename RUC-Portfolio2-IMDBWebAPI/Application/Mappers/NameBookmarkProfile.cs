@@ -4,9 +4,9 @@ using IMDB.Application.DTOs;
 
 namespace IMDB.Application.Mappers
 {
-    public class NameBookmarkMapper : Profile
+    public class NameBookmarkProfile : Profile
     {
-        public NameBookmarkMapper()
+        public NameBookmarkProfile()
         {
             CreateMap<NamesBookmarking, NameBookmarkDTO>()
                 .ForMember(dest => dest.Uconst, opt => opt.MapFrom(src => src.Uconst))
