@@ -22,7 +22,7 @@ namespace IMDB.Application.Services.v1.TitleService.Queries
 
         public async Task<PagedResponse<TitleBasic>> Handle(GetTitlesQuery request, CancellationToken cancellationToken)
         {
-           var titleResponse = await _titlesRepository.GetAllTitles(request.PagedRequest);
+            var titleResponse = await _titlesRepository.GetAllTitles(request.PagedRequest);
 
             if (request.PagedRequest.PageNumber < 1 || request.PagedRequest.PageSize < 1 || titleResponse.Data is null)
             {

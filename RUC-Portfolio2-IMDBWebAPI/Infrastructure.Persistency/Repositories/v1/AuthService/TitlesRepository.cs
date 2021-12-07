@@ -25,7 +25,7 @@ namespace IMDB.Infrastructure.Repositories.v1.AuthService
                 var rating = await _imdbContext.TitleRatings.Where(x => x.Tconst == tconst).ToListAsync();
                 var principals = await _imdbContext.TitlePrincipals.Where(x => x.Tconst == tconst).ToListAsync();
                 List<object> mylist = new List<object>();
-                object[] objects = {title, rating, principals};
+                object[] objects = { title, rating, principals };
                 mylist.AddRange(objects);
 
                 //var jsonString = JsonConvert.SerializeObject(mylist, Formatting.Indented, new JsonConverter[] { new Newtonsoft.Json.Converters.StringEnumConverter() });
