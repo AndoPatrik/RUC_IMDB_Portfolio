@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace IMDB.WebAPI.Controllers.v1
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
         [ApiController]
         public class TitlesController : ControllerBase
@@ -24,7 +24,7 @@ namespace IMDB.WebAPI.Controllers.v1
             {
                 try
                 {
-                    var result = await _mediator.Send(new GetTitleQuery { Tconst = tconst });
+                    var result = await _mediator.Send(new GetTitlesQuery {});
                     if (result.Data is null) return NotFound(result);
                     return Ok(result);
                 }
@@ -35,11 +35,12 @@ namespace IMDB.WebAPI.Controllers.v1
             }
 
         [HttpGet]
-        public async Task<ActionResult<ResponseMessage>> GetAllTitles()
+        public async Task<ActionResult<ResponseMessage>> GetAllTitles([FromQuery] PagedRequest pagedRequest)
         {
             try
             {
-                var result = await _mediator.Send(new GetTitleQuery { });
+                var uri = string.Format("{0}://{1}{2}{3}", HttpContext.Request.Scheme, HttpContext.Request.Host, HttpContext.Request.Path, HttpContext.Request.QueryString);
+                var result = await _mediator.Send(new GetTitlesQuery { PagedRequest = pagedRequest, CurrentPathUri = uri });
                 if (result.Data is null) return NotFound(result);
                 return Ok(result);
             }

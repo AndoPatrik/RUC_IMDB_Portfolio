@@ -1,14 +1,8 @@
-﻿using IMDB.Application.DTOs;
+﻿using Domain.Entities;
+using IMDB.Application.DTOs;
 using IMDB.Application.Interfaces.v1.Repositories;
 using Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IMDB.Infrastructure.Repositories.v1.AuthService
 {
@@ -36,39 +30,32 @@ namespace IMDB.Infrastructure.Repositories.v1.AuthService
 
                 //var jsonString = JsonConvert.SerializeObject(mylist, Formatting.Indented, new JsonConverter[] { new Newtonsoft.Json.Converters.StringEnumConverter() });
 
-                response.Status = $"Title on ID:{title.Tconst} successfully fetched.";
+                response.Message = $"Title on ID:{title.Tconst} successfully fetched.";
                 response.Data = objects;
             }
             catch (Exception ex)
             {
-                response.Status = ex.ToString();
+                response.Message = ex.ToString();
             }
 
             return response;
         }
 
-        public async Task<ResponseMessage> GetAllTitles()
+        public async Task<PagedResponse<TitleBasic>> GetAllTitles(PagedRequest pagedRequest)
         {
-            var response = new ResponseMessage();
-
+            var response = new PagedResponse<TitleBasic>();
             try
             {
-                //TODO: Do this with TitleBasicDTO
-                List<object> mylist = new List<object>();
-                foreach (var line in _imdbContext.TitleBasics.Take(10))
-                {
-                    mylist.Add(line);
-                }
-                //var jsonString = JsonConvert.SerializeObject(mylist, Formatting.Indented, new JsonConverter[] { new Newtonsoft.Json.Converters.StringEnumConverter() });
-
-                response.Status = "Sucessful title fetch.";
-                response.Data = mylist;
+                //TODO: URI service previous + next page
+                var skip = (pagedRequest.PageNumber - 1) * pagedRequest.PageSize;
+                var titles = await _imdbContext.TitleBasics.Skip(skip).Take(pagedRequest.PageSize).ToListAsync();
+                response.Message = "Sucessful title fetch.";
+                response.Data = titles;
             }
             catch (Exception ex)
             {
-                response.Status = ex.ToString();
+                response.Message = ex.ToString();
             }
-
             return response;
         }
     }

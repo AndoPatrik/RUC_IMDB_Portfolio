@@ -1,5 +1,6 @@
 using Application.Interfaces.v1.Repositories;
 using Application.Services.v1.AuthService.Command;
+using Domain.Entities;
 using IMDB.Application.DTOs;
 using IMDB.Application.Interfaces.v1;
 using IMDB.Application.Interfaces.v1.Repositories;
@@ -12,6 +13,7 @@ using IMDB.Application.Services.v1.TitleBookmarksService.Query;
 using IMDB.Application.Services.v1.TitleService.Queries;
 using IMDB.Application.Services.v1.UsersService;
 using IMDB.Application.Services.v1.UsersService.Command;
+using IMDB.Infrastructure.Repositories.v1;
 using IMDB.Infrastructure.Repositories.v1.AuthService;
 using IMDB.Infrastructure.Utils;
 using Infrastructure.Context;
@@ -75,6 +77,7 @@ builder.Services.AddScoped<IUsersRepository, UsersRepository>();
 builder.Services.AddScoped<IBookmarksRepository, BookmarksRepository>();
 builder.Services.AddScoped<ITitlesRepository, TitlesRepository>();
 builder.Services.AddScoped<INamesRepository, NamesRepository>();
+builder.Services.AddScoped<IUriService, UriService>();
 
 
 //REGISTER HANDLERS
@@ -89,7 +92,7 @@ builder.Services.AddScoped<IRequestHandler<AddTitleBookmarkCommand, ResponseMess
 builder.Services.AddScoped<IRequestHandler<DeleteTitleBookmarkCommand, ResponseMessage>, DeleteTitleBookmarkCommandHandler>();
 builder.Services.AddScoped<IRequestHandler<GetTitlesBookmarkQuery, ResponseMessage>, GetTitlesBookmarkQueryHandler>();
 
-builder.Services.AddScoped<IRequestHandler<GetTitleQuery, ResponseMessage>, GetTitleQueryCommandHandler>();
+builder.Services.AddScoped<IRequestHandler<GetTitlesQuery, PagedResponse<TitleBasic>>, GetTitlesQueryCommandHandler>();
 builder.Services.AddScoped<IRequestHandler<GetNameQuery, ResponseMessage>, GetNameQueryHandler>();
 
 //JWT

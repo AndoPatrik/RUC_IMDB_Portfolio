@@ -39,12 +39,12 @@ namespace IMDB.Infrastructure.Repositories.v1.AuthService
                 var nameBookmarkingDTO = new NameBookmarkDTO { Nconst = nameBookmarking.Nconst, Uconst = nameBookmark.Uconst };
 
                 await _imdbContext.SaveChangesAsync();
-                response.Status = "Name bookmark has been added.";
+                response.Message = "Name bookmark has been added.";
                 response.Data = new { nameBookmarkingDTO };
             }
             catch (Exception ex)
             {
-                response.Status = ex.Message;
+                response.Message = ex.Message;
             }
             return response;  
         }
@@ -64,12 +64,12 @@ namespace IMDB.Infrastructure.Repositories.v1.AuthService
                 _imdbContext.TitleBookmarkings.Add(titleBookmarking);
 
                 await _imdbContext.SaveChangesAsync();
-                response.Status = "Name bookmark has been added.";
+                response.Message = "Name bookmark has been added.";
                 response.Data = titleBookmark;
             }
             catch (Exception ex)
             {
-                response.Status = ex.Message;
+                response.Message = ex.Message;
             }
             return response;
         }
@@ -83,18 +83,18 @@ namespace IMDB.Infrastructure.Repositories.v1.AuthService
 
                 if (nameBookmarkToDelete is null) 
                 {
-                    response.Status = "Name bookmarking has been already deleted or does not exist.";
+                    response.Message = "Name bookmarking has been already deleted or does not exist.";
                     return response;
                 }
 
                 _imdbContext.NamesBookmarkings.Remove(nameBookmarkToDelete);
                 await _imdbContext.SaveChangesAsync();
-                response.Status = "Name bookmarking is sucessfuilly deleted.";
+                response.Message = "Name bookmarking is sucessfuilly deleted.";
                 response.Data = nameBookmark; 
             }
             catch (Exception ex)
             {
-                response.Status=ex.Message;
+                response.Message=ex.Message;
             }
             return response;
         }
@@ -108,18 +108,18 @@ namespace IMDB.Infrastructure.Repositories.v1.AuthService
 
                 if (titleBookmarkToDelete is null)
                 {
-                    response.Status = "Title bookmarking has been already deleted or does not exist.";
+                    response.Message = "Title bookmarking has been already deleted or does not exist.";
                     return response;
                 }
 
                 _imdbContext.TitleBookmarkings.Remove(titleBookmarkToDelete);
                 await _imdbContext.SaveChangesAsync();
-                response.Status = "Name bookmarking is sucessfuilly deleted.";
+                response.Message = "Name bookmarking is sucessfuilly deleted.";
                 response.Data = titleBookmark;
             }
             catch (Exception ex)
             {
-                response.Status = ex.Message;
+                response.Message = ex.Message;
             }
             return response;
         }
@@ -138,12 +138,12 @@ namespace IMDB.Infrastructure.Repositories.v1.AuthService
                 //TODO: Change to automapper
                 namesBookmarkings.ForEach(b => namesBookmarkingsDTOs.Add(new NameBookmarkDTO { Uconst = b.Uconst, Nconst = b.Nconst }));
 
-                response.Status = "Sucsessful fetching of names bookmarkings";
+                response.Message = "Sucsessful fetching of names bookmarkings";
                 response.Data = namesBookmarkingsDTOs;
             }
             catch (Exception ex)
             {
-                response.Status=ex.Message;
+                response.Message=ex.Message;
             }
 
             return response;
@@ -161,12 +161,12 @@ namespace IMDB.Infrastructure.Repositories.v1.AuthService
                 //TODO: Change to automapper
                 titlesBookmarking.ForEach(b => titlesBookmarkingDTO.Add(new TitleBookmarkDTO { Uconst = b.Uconst, Tconst = b.Tconst }));
 
-                response.Status = "Sucsessful fetching of title bookmarkings";
+                response.Message = "Sucsessful fetching of title bookmarkings";
                 response.Data = titlesBookmarkingDTO;
             }
             catch (Exception ex)
             {
-                response.Status = ex.Message;
+                response.Message = ex.Message;
             }
 
             return response;

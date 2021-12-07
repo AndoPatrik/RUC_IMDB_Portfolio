@@ -39,12 +39,12 @@ namespace IMDB.Infrastructure.Repositories.v1.AuthService
                 mylist.AddRange(objects);
                 var jsonString = JsonConvert.SerializeObject(mylist, Formatting.Indented, new JsonConverter[] { new Newtonsoft.Json.Converters.StringEnumConverter() });
 
-                response.Status = "200";
+                response.Message = "200";
                 response.Data = objects;
             }
             catch (Exception ex)
             {
-                response.Status = ex.ToString();
+                response.Message = ex.ToString();
             }
 
             return response;
@@ -64,12 +64,12 @@ namespace IMDB.Infrastructure.Repositories.v1.AuthService
                 //var name = await _imdbContext.NameBasics.Find().ToListAsync();
                 var jsonString = JsonConvert.SerializeObject(mylist, Formatting.Indented, new JsonConverter[] { new Newtonsoft.Json.Converters.StringEnumConverter() });
 
-                response.Status = "200";
+                response.Message = "200";
                 response.Data = mylist;
             }
             catch (Exception ex)
             {
-                response.Status = ex.ToString();
+                response.Message = ex.ToString();
             }
 
             return response;
