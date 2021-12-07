@@ -93,7 +93,10 @@ builder.Services.AddScoped<IRequestHandler<DeleteTitleBookmarkCommand, ResponseM
 builder.Services.AddScoped<IRequestHandler<GetTitlesBookmarkQuery, ResponseMessage>, GetTitlesBookmarkQueryHandler>();
 
 builder.Services.AddScoped<IRequestHandler<GetTitlesQuery, PagedResponse<TitleBasic>>, GetTitlesQueryCommandHandler>();
+builder.Services.AddScoped<IRequestHandler<GetTitleByTconstQuery, ResponseMessage>, GetTitleByTconstQueryHandler>();
+
 builder.Services.AddScoped<IRequestHandler<GetNameQuery, ResponseMessage>, GetNameQueryHandler>();
+
 
 //JWT
 // services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
