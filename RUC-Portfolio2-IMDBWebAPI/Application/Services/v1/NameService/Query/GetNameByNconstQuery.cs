@@ -3,10 +3,8 @@ using MediatR;
 
 namespace IMDB.Application.Services.v1.NameService.Query
 {
-    public class GetNameQuery : IRequest<ResponseMessage>
+    public class GetNameByNconstQuery : IRequest<ResponseMessage>
     {
         public string Nconst { get; set; }
-
-        public GetNameQuery() { }
     }
 }

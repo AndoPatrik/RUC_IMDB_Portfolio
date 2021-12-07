@@ -3,11 +3,6 @@ using IMDB.Application.Interfaces.v1.Repositories;
 using Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IMDB.Infrastructure.Repositories.v1.AuthService
 {
@@ -23,30 +18,21 @@ namespace IMDB.Infrastructure.Repositories.v1.AuthService
         public async Task<ResponseMessage> GetNameByNconst(string nconst)
         {
             var response = new ResponseMessage();
-
             try
             {
-                List<object> mylist = new List<object>();
-                var name = await _imdbContext.NameBasics.FindAsync(nconst);
-                var principals = await _imdbContext.TitlePrincipals.Where(x => x.Nconst == nconst).ToListAsync();
-                foreach (var movie in principals)
+                var name = await _imdbContext.NameBasics.Where(n => n.Nconst == nconst).FirstOrDefaultAsync();
+                if (name == null)
                 {
-                    var movies = await _imdbContext.TitleBasics.Where(x => x.Tconst == movie.Tconst).ToListAsync();
-                    mylist.AddRange(movies);
+                    response.Message = $"No name can be found on nconst = {nconst}";
+                    return response;
                 }
-                
-                object[] objects = { name, principals };
-                mylist.AddRange(objects);
-                var jsonString = JsonConvert.SerializeObject(mylist, Formatting.Indented, new JsonConverter[] { new Newtonsoft.Json.Converters.StringEnumConverter() });
-
-                response.Message = "200";
-                response.Data = objects;
+                response.Message = $"Sucessfully fetched name on nconst = {nconst}";
+                response.Data = name;
             }
             catch (Exception ex)
             {
                 response.Message = ex.ToString();
             }
-
             return response;
         }
 

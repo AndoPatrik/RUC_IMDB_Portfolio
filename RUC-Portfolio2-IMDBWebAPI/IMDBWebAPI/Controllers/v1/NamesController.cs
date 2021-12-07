@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace IMDB.WebAPI.Controllers.v1
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class NamesController : ControllerBase
@@ -24,7 +24,9 @@ namespace IMDB.WebAPI.Controllers.v1
         {
             try
             {
-                return await _mediator.Send(new GetNameQuery { Nconst = nconst });
+                var result =  await _mediator.Send(new GetNameByNconstQuery { Nconst = nconst });
+                if (result.Data == null) return NotFound(result);
+                return Ok(result.Data);
             }
             catch (Exception)
             {
@@ -37,7 +39,7 @@ namespace IMDB.WebAPI.Controllers.v1
         {
             try
             {
-                return await _mediator.Send(new GetNameQuery { });
+                return await _mediator.Send(new GetNameByNconstQuery { });
             }
             catch (Exception)
             {

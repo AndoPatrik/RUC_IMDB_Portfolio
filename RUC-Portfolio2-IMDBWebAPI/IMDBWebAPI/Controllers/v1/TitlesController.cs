@@ -1,6 +1,7 @@
 ﻿using IMDB.Application.DTOs;
 using IMDB.Application.Services.v1.TitleService.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IMDB.WebAPI.Controllers.v1
