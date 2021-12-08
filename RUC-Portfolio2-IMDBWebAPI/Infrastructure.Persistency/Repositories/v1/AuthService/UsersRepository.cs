@@ -31,11 +31,11 @@ namespace IMDB.Infrastructure.Repositories.v1.AuthService
                 _imdbContext.Users.Add(userToRegister);
                 await _imdbContext.SaveChangesAsync();
 
-                response.Status = $"User with ID:{newUserID} created.";
+                response.Message = $"User with ID:{newUserID} created.";
             }
             catch (Exception ex)
             {
-                response.Status = ex.ToString();
+                response.Message = ex.ToString();
             }
 
             return response;

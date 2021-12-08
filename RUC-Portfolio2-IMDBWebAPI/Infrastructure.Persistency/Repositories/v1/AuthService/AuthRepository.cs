@@ -25,11 +25,11 @@ namespace Infrastructure.Repositories.v1.AuthService
 
             if (user is null) 
             {
-                response.Status = "Authentication failed.";
+                response.Message = "Authentication failed.";
                 return response;
             }
 
-            response.Status = $"{userToAuth.Username} successfully authenticated";
+            response.Message = $"{userToAuth.Username} successfully authenticated";
             response.Data = new { token = _JWTAuthenticationManager.CreateJWT(user) };
             return response;
         }
