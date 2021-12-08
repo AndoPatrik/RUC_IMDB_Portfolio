@@ -35,11 +35,14 @@ namespace IMDB.WebAPI.Controllers.v1
         }
 
         [HttpGet]
-        public async Task<ActionResult<ResponseMessage>> GetAllNames()
+        public async Task<ActionResult<ResponseMessage>> GetAllNames([FromQuery] PagedRequest pagedRequest)
         {
             try
             {
-                return await _mediator.Send(new GetNameByNconstQuery { });
+                var currentUri = string.Format("{0}://{1}{2}{3}", HttpContext.Request.Scheme, HttpContext.Request.Host, HttpContext.Request.Path, HttpContext.Request.QueryString);
+                var result = await _mediator.Send(new GetNamesQuery { PagedRequest = pagedRequest, CurrentPathUri = currentUri });
+                if (result.Data is null) return NotFound(result);
+                return Ok(result);
             }
             catch (Exception)
             {

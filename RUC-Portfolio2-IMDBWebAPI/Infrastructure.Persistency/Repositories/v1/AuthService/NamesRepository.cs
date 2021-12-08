@@ -1,4 +1,5 @@
-﻿using IMDB.Application.DTOs;
+﻿using Domain.Entities;
+using IMDB.Application.DTOs;
 using IMDB.Application.Interfaces.v1.Repositories;
 using Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
@@ -36,28 +37,20 @@ namespace IMDB.Infrastructure.Repositories.v1.AuthService
             return response;
         }
 
-        public async Task<ResponseMessage> GetAllNames()
+        public async Task<PagedResponse<NameBasic>> GetAllNames(PagedRequest pagedRequest)
         {
-            var response = new ResponseMessage();
-
+            var response = new PagedResponse<NameBasic>();
             try
             {
-                List<object> mylist = new List<object>();
-                foreach (var line in _imdbContext.NameBasics.Take(10))
-                {
-                    mylist.Add(line);
-                }
-                //var name = await _imdbContext.NameBasics.Find().ToListAsync();
-                var jsonString = JsonConvert.SerializeObject(mylist, Formatting.Indented, new JsonConverter[] { new Newtonsoft.Json.Converters.StringEnumConverter() });
-
-                response.Message = "200";
-                response.Data = mylist;
+                var skip = (pagedRequest.PageNumber - 1) * pagedRequest.PageSize;
+                var names = await _imdbContext.NameBasics.Skip(skip).Take(pagedRequest.PageSize).ToListAsync();
+                response.Message = "Sucessful names fetch.";
+                response.Data = names;
             }
             catch (Exception ex)
             {
                 response.Message = ex.ToString();
             }
-
             return response;
         }
     }

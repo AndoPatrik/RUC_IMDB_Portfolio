@@ -96,6 +96,7 @@ builder.Services.AddScoped<IRequestHandler<GetTitlesQuery, PagedResponse<TitleBa
 builder.Services.AddScoped<IRequestHandler<GetTitleByTconstQuery, ResponseMessage>, GetTitleByTconstQueryHandler>();
 
 builder.Services.AddScoped<IRequestHandler<GetNameByNconstQuery, ResponseMessage>, GetNameByNconstQueryHandler>();
+builder.Services.AddScoped<IRequestHandler<GetNamesQuery, PagedResponse<NameBasic>>, GetNamesQueryHandler>();
 
 
 //JWT
