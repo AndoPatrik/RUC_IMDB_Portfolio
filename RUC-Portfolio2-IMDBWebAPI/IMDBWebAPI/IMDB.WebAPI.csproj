@@ -24,4 +24,14 @@
     <ProjectReference Include="..\Infrastructure.Persistency\IMDB.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Presentation\Models\" />
+    <Folder Include="wwwroot\Presentation\ViewModels\" />
+    <Folder Include="wwwroot\Presentation\Views\_partialViews\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\index.html" />
+  </ItemGroup>
+
 </Project>
