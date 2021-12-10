@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IMDB.Domain", "Domain\IMDB.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IMDB.Infrastructure", "Infrastructure.Persistency\IMDB.Infrastructure.csproj", "{8161B1CA-402A-40C4-8539-73204C172BBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMDB.Application", "Application\IMDB.Application.csproj", "{30BA6922-273D-44F4-92A0-68067950432B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IMDB.Application", "Application\IMDB.Application.csproj", "{30BA6922-273D-44F4-92A0-68067950432B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "Presentation\Presentation.csproj", "{CD507C64-720D-4D01-9F06-D7AF58D82C89}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{30BA6922-273D-44F4-92A0-68067950432B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30BA6922-273D-44F4-92A0-68067950432B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30BA6922-273D-44F4-92A0-68067950432B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD507C64-720D-4D01-9F06-D7AF58D82C89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD507C64-720D-4D01-9F06-D7AF58D82C89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD507C64-720D-4D01-9F06-D7AF58D82C89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD507C64-720D-4D01-9F06-D7AF58D82C89}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +54,7 @@ Global
 		{18DBDF27-D92B-42CC-A722-203681F1FCD7} = {2DC7BEB1-C506-4654-A245-A461732CF893}
 		{8161B1CA-402A-40C4-8539-73204C172BBF} = {2DC7BEB1-C506-4654-A245-A461732CF893}
 		{30BA6922-273D-44F4-92A0-68067950432B} = {2DC7BEB1-C506-4654-A245-A461732CF893}
+		{CD507C64-720D-4D01-9F06-D7AF58D82C89} = {2DC7BEB1-C506-4654-A245-A461732CF893}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {269D88B2-53D2-4AB1-B7C9-837F159760E0}
