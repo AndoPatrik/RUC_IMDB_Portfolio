@@ -18,8 +18,8 @@
   </ItemGroup>
 
    <ItemGroup>
-     <ProjectReference Include="..\Application\IMDB.Application.csproj" />
-     <ProjectReference Include="..\Domain\IMDB.Domain.csproj" />
+     <ProjectReference Include="..\IMDB.Application\IMDB.Application.csproj" />
+     <ProjectReference Include="..\IMDB.Domain\IMDB.Domain.csproj" />
    </ItemGroup>
 
 </Project>

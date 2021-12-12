@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Infrastructure.Persistency\IMDB.Infrastructure.csproj" />
+    <ProjectReference Include="..\IMDB.Infrastructure\IMDB.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Domain\IMDB.Domain.csproj" />
+    <ProjectReference Include="..\IMDB.Domain\IMDB.Domain.csproj" />
   </ItemGroup>
 
 </Project>

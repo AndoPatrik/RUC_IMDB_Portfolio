@@ -11,11 +11,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E776D871
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{933DB3EE-E438-4AA8-BDDA-34FAE4CD960C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IMDB.Domain", "Domain\IMDB.Domain.csproj", "{18DBDF27-D92B-42CC-A722-203681F1FCD7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IMDB.Domain", "IMDB.Domain\IMDB.Domain.csproj", "{18DBDF27-D92B-42CC-A722-203681F1FCD7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IMDB.Infrastructure", "Infrastructure.Persistency\IMDB.Infrastructure.csproj", "{8161B1CA-402A-40C4-8539-73204C172BBF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IMDB.Infrastructure", "IMDB.Infrastructure\IMDB.Infrastructure.csproj", "{8161B1CA-402A-40C4-8539-73204C172BBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMDB.Application", "Application\IMDB.Application.csproj", "{30BA6922-273D-44F4-92A0-68067950432B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMDB.Application", "IMDB.Application\IMDB.Application.csproj", "{30BA6922-273D-44F4-92A0-68067950432B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
