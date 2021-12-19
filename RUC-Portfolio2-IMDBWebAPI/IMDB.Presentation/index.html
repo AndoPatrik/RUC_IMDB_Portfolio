@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+
+  <title>Hello, imdb!</title>
+</head>
+
+<body>
+  <!--Navbar-->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark primary-color">
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+      aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="#">
+      <img
+        src="data:image/png;base64,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"
+        width="30" height="30" alt="" />
+    </a>
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="basicExampleNav">
+      <!-- Links -->
+      <ul class="navbar-nav mr-auto">
+        <!-- Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">Menu</a>
+          <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="#">Action 1</a>
+            <a class="dropdown-item" href="#">Action 2</a>
+            <a class="dropdown-item" href="#">Action 3</a>
+          </div>
+        </li>
+      </ul>
+      <!-- Links -->
+
+      <form class="form-inline">
+        <div class="md-form my-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" />
+        </div>
+      </form>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Search </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./SignIn/signin.html">Sign In</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./SignUp/signup.html">Sign up</a>
+        </li>
+        <!-- Should be only visibele when user logged in -->
+        <li class="nav-item">
+          <a class="nav-link">Bookmarks</a>
+        </li>
+      </ul>
+    </div>
+    <!-- Collapsible content -->
+  </nav>
+
+  <h1>Hello, imdb!</h1>
+
+  <p>First name: <input data-bind="value: firstName" /></p>
+  <p>Last name: <input data-bind="value: lastName" /></p>
+  <h2>Hello, <span data-bind="text: fullName"> </span>!</h2>
+
+
+  <!-- Footer -->
+  <footer class="page-footer font-small special-color-dark pt-4">
+    <!-- Footer Elements -->
+    <div class="container">
+      <!-- Call to action -->
+      <ul class="list-unstyled list-inline text-center py-2">
+        <li class="list-inline-item">
+          <h5 class="mb-1">Register for free</h5>
+        </li>
+        <li class="list-inline-item">
+          <a href="#!" class="btn btn-outline-white btn-rounded">Sign up!</a>
+        </li>
+      </ul>
+      <!-- Call to action -->
+    </div>
+    <!-- Footer Elements -->
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">
+      © 2020 Copyright:
+      <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
+  <!-- Bootstrap Bundle with Popper -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <!-- Knockout 3.5.1. -->
+  <script type="text/javascript" src="https://knockoutjs.com/downloads/knockout-3.5.1.js"></script>
+  <!-- Custom js file -->
+  <script type="text/javascript" src="index.js"></script>
+</body>
+
+</html>

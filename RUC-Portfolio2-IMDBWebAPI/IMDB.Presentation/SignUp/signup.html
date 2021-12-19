@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../SignIn/signin.css">
+
+</head>
+
+<body>
+    <form data-bind="submit: handleSubmit" style="border:1px solid #ccc">
+        <div class="container">
+            <h1>Sign Up</h1>
+            <p>Please fill in this form to create an account.</p>
+            <hr>
+
+            <label for="username"><b>Username</b></label>
+            <input data-bind="value: username" type="text" placeholder="Enter username" name="username">
+            
+            <br>
+            <label for="psw"><b>Password</b></label>
+            <input data-bind="value: password" type="password" placeholder="Enter Password" name="psw">
+
+            <!-- Enable if you want to have password confirmation field -->
+            <label for="psw-repeat"><b>Repeat Password</b></label>
+            <input data-bind="value: passwordConfirm" type="password" placeholder="Repeat Password" name="psw-repeat">
+            <br>
+            <label>
+                <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+            </label>
+            
+            <div class="clearfix">
+                <button data-bind="click: handleBack" type="button" class="cancelbtn">Cancel</button>
+                <button type="submit" class="signupbtn">Sign Up</button>
+            </div>
+        </div>
+    </form>
+
+    <script type="text/javascript" src="https://knockoutjs.com/downloads/knockout-3.5.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout-validation/2.0.4/knockout.validation.min.js" integrity="sha512-b99MDNv5TqiZtPKH2UeHzDAVydmgrOJEPtaPPEF8AgV86eYyqINFI/K7/7f0+R4WNTAVv8KvvpjwfOYHv5rd5g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="module" src="signup-viewmodel.js"></script>
+</body>
+
+</html>
