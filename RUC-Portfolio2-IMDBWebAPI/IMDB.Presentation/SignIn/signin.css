@@ -64,7 +64,7 @@ button:hover {
 .validationMessage {
   color: red;
   font-size: 0.8em;
-  margin-top: 0.2em;
+  margin-bottom: 1em;
 }
 
 /* Change styles for cancel button and signup button on extra small screens */
