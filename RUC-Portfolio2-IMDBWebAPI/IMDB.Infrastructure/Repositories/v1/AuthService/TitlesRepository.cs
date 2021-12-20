@@ -43,6 +43,7 @@ namespace IMDB.Infrastructure.Repositories.v1.AuthService
             {
                 var skip = (pagedRequest.PageNumber - 1) * pagedRequest.PageSize;
                 var titles = await _imdbContext.TitleBasics.Skip(skip).Take(pagedRequest.PageSize).ToListAsync();
+              
                 response.Message = "Sucessful title fetch.";
                 response.Data = titles;
             }
