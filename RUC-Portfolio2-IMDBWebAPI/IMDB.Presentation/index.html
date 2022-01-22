@@ -69,13 +69,13 @@
 
   <h1>Movies</h1>
 
-  <button data-bind="click: handlePrevious">Previous</button>
-  <button data-bind="click: handleNext">Next</button>
-  
-  <div class="row"> 
-    <div data-bind="foreach: movies" style="width: 200px; height: 100px;">
-      <div class="card bg-dark">
-        <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.jpg" class="card-img-top"
+  <div class="container">
+    <h1>Action category</h1>
+    <button data-bind="click: handlePrevious">Previous</button>
+    <button data-bind="click: handleNext">Next</button>
+    <div class="row row-cols-5" data-bind="foreach: movies">
+      <div class=" card bg-dark col">
+        <img src=" https://mdbcdn.b-cdn.net/img/new/standard/nature/184.jpg" class="card-img-top"
           alt="Fissure in Sandstone" />
         <div class="card-body">
           <h5 data-bind="text: primarytitle" class="card-title">Card title</h5>
