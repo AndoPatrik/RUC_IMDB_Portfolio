@@ -21,7 +21,7 @@ namespace IMDB.Infrastructure.Repositories.v1.AuthService
             try
             {
                 var title = await _imdbContext.TitleBasics.Where(t => t.Tconst == tconst).FirstOrDefaultAsync();
-                if (title == null) 
+                if (title == null)
                 {
                     response.Message = $"Title on tconst = {tconst} could not be found";
                     return response;
@@ -43,7 +43,14 @@ namespace IMDB.Infrastructure.Repositories.v1.AuthService
             {
                 var skip = (pagedRequest.PageNumber - 1) * pagedRequest.PageSize;
                 var titles = await _imdbContext.TitleBasics.Skip(skip).Take(pagedRequest.PageSize).ToListAsync();
-              
+
+                //TODO: Temp solution. Setup correct mapping in context.
+                foreach (var title in titles)
+                {
+                    //title.Genres = await _imdbContext.Genres.Where(g => g.Tconst == title.Tconst).ToListAsync();
+                    title.OmdbDatum = await _imdbContext.OmdbData.FirstOrDefaultAsync(o => o.Tconst == title.Tconst);
+                }
+
                 response.Message = "Sucessful title fetch.";
                 response.Data = titles;
             }
