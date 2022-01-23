@@ -18,7 +18,7 @@ namespace IMDB.Application.Services.v1.TitleBookmarksService.Command
 
         public async Task<ResponseMessage> Handle(AddTitleBookmarkCommand request, CancellationToken cancellationToken)
         {
-            return await _bookmarksRepository.AddTitleBookmarkToUser(request.titleBookmark);
+            return await _bookmarksRepository.AddTitleBookmarkToUser(request.titleBookmark, request.JWTToken);
         }
     }
 }

@@ -21,6 +21,7 @@ namespace IMDB.Infrastructure.Repositories.v1.AuthService
             try
             {
                 var title = await _imdbContext.TitleBasics.Where(t => t.Tconst == tconst).FirstOrDefaultAsync();
+                title.OmdbDatum = await _imdbContext.OmdbData.FirstOrDefaultAsync(o => o.Tconst == title.Tconst);
                 if (title == null)
                 {
                     response.Message = $"Title on tconst = {tconst} could not be found";

@@ -46,17 +46,18 @@ namespace IMDB.Infrastructure.Repositories.v1.AuthService
             {
                 response.Message = ex.Message;
             }
-            return response;  
+            return response;
         }
 
-        public async Task<ResponseMessage> AddTitleBookmarkToUser(TitleBookmarkDTO titleBookmark)
+        public async Task<ResponseMessage> AddTitleBookmarkToUser(TitleBookmarkDTO titleBookmark, string jwtToken)
         {
             ResponseMessage response = new ResponseMessage();
             try
             {
+                var decodedToken = _jWTAuthenticationManager.DecodeJWT(jwtToken);
                 TitleBookmarking titleBookmarking = new TitleBookmarking
                 {
-                    Uconst = titleBookmark.Uconst,
+                    Uconst = decodedToken.UserID,
                     Tconst = titleBookmark.Tconst,
                     Titledate = DateTime.Now.ToString(),
                 };
@@ -79,9 +80,9 @@ namespace IMDB.Infrastructure.Repositories.v1.AuthService
             ResponseMessage response = new ResponseMessage();
             try
             {
-                var nameBookmarkToDelete = _imdbContext.NamesBookmarkings.Where(b=>b.Nconst == nameBookmark.Nconst && b.Uconst == nameBookmark.Uconst).FirstOrDefault();
+                var nameBookmarkToDelete = _imdbContext.NamesBookmarkings.Where(b => b.Nconst == nameBookmark.Nconst && b.Uconst == nameBookmark.Uconst).FirstOrDefault();
 
-                if (nameBookmarkToDelete is null) 
+                if (nameBookmarkToDelete is null)
                 {
                     response.Message = "Name bookmarking has been already deleted or does not exist.";
                     return response;
@@ -90,11 +91,11 @@ namespace IMDB.Infrastructure.Repositories.v1.AuthService
                 _imdbContext.NamesBookmarkings.Remove(nameBookmarkToDelete);
                 await _imdbContext.SaveChangesAsync();
                 response.Message = "Name bookmarking is sucessfuilly deleted.";
-                response.Data = nameBookmark; 
+                response.Data = nameBookmark;
             }
             catch (Exception ex)
             {
-                response.Message=ex.Message;
+                response.Message = ex.Message;
             }
             return response;
         }
@@ -143,7 +144,7 @@ namespace IMDB.Infrastructure.Repositories.v1.AuthService
             }
             catch (Exception ex)
             {
-                response.Message=ex.Message;
+                response.Message = ex.Message;
             }
 
             return response;
