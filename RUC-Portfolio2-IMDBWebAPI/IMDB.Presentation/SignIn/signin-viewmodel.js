@@ -25,7 +25,7 @@ var SignInViewModel = function () {
         var result = await postData('/Auth', payload);
 
         if (result.data) {
-            sessionStorage.setItem("CurrentUser", JSON.stringify({ user: self.username(), token: result.data }))
+            sessionStorage.setItem("CurrentUser", JSON.stringify({ user: self.username(), token: result.data.token }))
             // window.location.href = "./index.html"
             history.back()
         }

@@ -59,8 +59,8 @@
           <a class="nav-link" href="./SignUp/signup.html">Sign up</a>
         </li>
         <!-- Should be only visibele when user logged in -->
-        <li class="nav-item">
-          <a class="nav-link">Bookmarks</a>
+        <li data-bind="if: userLoggedIn" class=" nav-item">
+          <a class="nav-link" href="./Bookmarks/bookmarks.html">Bookmarks</a>
         </li>
       </ul>
     </div>
@@ -74,14 +74,17 @@
     <div class="row row-cols-5" data-bind="foreach: movies">
       <div class=" card bg-dark col" style="margin-bottom: 20px;">
         <img
-          data-bind="attr:{src: omdbDatum ? omdbDatum.poster : 'https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483141.jpg'}"
+          data-bind="click: () => $parent.handlePictureClick(tconst), attr:{src: omdbDatum ? omdbDatum.poster : 'https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483141.jpg'}"
           class="card-img-top" alt="Fissure in Sandstone" />
         <div class="card-body">
           <h5 data-bind="text: primarytitle" class="card-title">Card title</h5>
           <p class="card-text">
             <span data-bind="text: titletype"></span>
           </p>
-          <a href="#!" class="btn btn-primary card-button">Add to favourites</a>
+          <div data-bind="if: $parent.userLoggedIn">
+            <button data-bind="click: () => $parent.handleBookmark(tconst)" class="btn btn-primary card-button">Add to
+              favourites</button>
+          </div>
         </div>
       </div>
     </div>
