@@ -21,7 +21,7 @@ var IndexViewModel = function () {
         this.fetchMovies(self.previousLink())
     }
 
-    window.onload = this.fetchMovies("https://localhost:7167/api/Titles?PageNumber=1&PageSize=5");
+    window.onload = this.fetchMovies("https://localhost:7167/api/Titles?PageNumber=1&PageSize=20");
 };
 
 ko.applyBindings(new IndexViewModel());
