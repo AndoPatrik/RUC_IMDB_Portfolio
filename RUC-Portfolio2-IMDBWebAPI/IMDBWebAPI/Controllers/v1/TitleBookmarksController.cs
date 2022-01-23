@@ -45,7 +45,8 @@ namespace IMDB.WebAPI.Controllers.v1
         {
             try
             {
-                var response = await _mediator.Send(new AddTitleBookmarkCommand { titleBookmark = titleBookmark });
+                var bearer_token = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
+                var response = await _mediator.Send(new AddTitleBookmarkCommand { titleBookmark = titleBookmark, JWTToken = bearer_token });
                 if (response.Data is null) return NotFound(response);
                 return Ok(response);
             }
