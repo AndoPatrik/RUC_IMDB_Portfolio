@@ -17,6 +17,10 @@ var BookmarksViewModel = function () {
         console.log(self.bookmarks());
     }
 
+    self.handleMovieOpen = function (tconst) {
+        location.href = window.location.origin + `/RUC-Portfolio2-IMDBWebAPI/IMDB.Presentation/SingleMoviePage/item.html?title_id=${ tconst }`
+    }
+
     window.onload = async () => {
         await self.loadBookmarks()
     }

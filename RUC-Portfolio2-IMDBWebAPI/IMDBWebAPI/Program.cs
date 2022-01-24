@@ -79,7 +79,6 @@ builder.Services.AddScoped<ITitlesRepository, TitlesRepository>();
 builder.Services.AddScoped<INamesRepository, NamesRepository>();
 builder.Services.AddScoped<IUriService, UriService>();
 
-
 //REGISTER HANDLERS
 builder.Services.AddScoped<IRequestHandler<AuthenticateCommand, ResponseMessage>, AuthenticateCommandHandler>();
 builder.Services.AddScoped<IRequestHandler<CreateUserCommand, ResponseMessage>, CreateUserCommandHandler>();
@@ -97,7 +96,6 @@ builder.Services.AddScoped<IRequestHandler<GetTitleByTconstQuery, ResponseMessag
 
 builder.Services.AddScoped<IRequestHandler<GetNameByNconstQuery, ResponseMessage>, GetNameByNconstQueryHandler>();
 builder.Services.AddScoped<IRequestHandler<GetNamesQuery, PagedResponse<NameBasic>>, GetNamesQueryHandler>();
-
 
 //JWT
 // services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -126,20 +124,18 @@ builder.Services.AddSingleton<IJWTAuthenticationManager>(new JWTAuthenticationMa
 //CORS
 builder.Services.AddCors();
 
-
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI(); 
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
 
-app.UseCors(options => { options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();});
+app.UseCors(options => { options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader(); });
 
 app.UseAuthentication();
 

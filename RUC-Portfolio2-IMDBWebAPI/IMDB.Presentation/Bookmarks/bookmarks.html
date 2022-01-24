@@ -12,7 +12,7 @@
     <h1>Bookmarks</h1>
 
     <div data-bind="foreach: bookmarks">
-        <div data-bind="text: primarytitle"></div>
+        <div data-bind="text: primarytitle, click: () => $parent.handleMovieOpen(tconst)"></div>
         <div data-bind="text: startyear"></div>
     </div>
 
