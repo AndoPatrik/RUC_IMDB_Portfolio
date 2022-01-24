@@ -10,8 +10,8 @@ var BookmarksViewModel = function () {
         if (!result.data) return
 
         result.data.forEach(async bookmark => {
-            var result = await fetchData(`/Titles/${ bookmark.tconst }`)
-            if (result.data) self.bookmarks().push(result.data)
+            var result = await fetchData(`https://localhost:7167/api/Titles/${ bookmark.tconst }`)
+            if (result.data) self.bookmarks.push(result.data)
         });
 
         console.log(self.bookmarks());

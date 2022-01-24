@@ -11,18 +11,10 @@
 <body>
     <h1>Bookmarks</h1>
 
-
-
     <div data-bind="foreach: bookmarks">
-        <p data-bind="text: primarytitle"></p>
-        <p data-bind="text: startyear"></p>
+        <div data-bind="text: primarytitle"></div>
+        <div data-bind="text: startyear"></div>
     </div>
-
-    <ul data-bind="foreach: bookmarks">
-        <li>
-            <b data-bind="text: primarytitle"></b>
-        </li>
-    </ul>
 
     <script type="text/javascript" src="https://knockoutjs.com/downloads/knockout-3.5.1.js"></script>
     <script type="module" src="bookmarks-viewmodel.js"></script>

@@ -44,7 +44,7 @@ var IndexViewModel = function () {
 
     window.onload = () => {
         self.checkIfUserLoggedIn();
-        self.fetchMovies("/Titles?PageNumber=1&PageSize=20");
+        self.fetchMovies("https://localhost:7167/api/Titles?PageNumber=1&PageSize=20");
     }
 };
 

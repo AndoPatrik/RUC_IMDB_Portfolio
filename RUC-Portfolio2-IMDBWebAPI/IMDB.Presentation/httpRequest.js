@@ -25,7 +25,7 @@ export async function postDataBearer (path = '', data = {}) {
 }
 
 export async function fetchData (path = "") {
-  const response = await fetch(localBasePath + path, {
+  const response = await fetch(path, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'

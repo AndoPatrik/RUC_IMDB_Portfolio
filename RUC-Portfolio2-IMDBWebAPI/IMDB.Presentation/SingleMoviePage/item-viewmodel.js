@@ -1,9 +1,6 @@
 window.onload = function () {
-  //var title_id = getParameters();
-  title_id = 'tt10850402'
+  var title_id = getParameters();
 };
-
-var title_id = ""
 
 function getParameters () {
   let urlString = window.location.href;
@@ -44,7 +41,7 @@ ko.applyBindings(mainTitleDetailViewModel);
 $.ajax({
   type: "GET",
   dataType: "JSON",
-  url: "https://localhost:7167/api/Titles/" + title_id,
+  url: "https://localhost:7167/api/Titles/" + getParameters(),
   data: JSON.stringify(),
   success: function (data) {
     result = data.data;
